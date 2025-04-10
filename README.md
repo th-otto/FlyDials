@@ -1,7 +1,7 @@
 # The legendary GEM FlyDials library
 
 
-As seen seen in [Gemini](https://github.com/gereons/gemini) - the true one, not that AI crap.
+As seen in [Gemini](https://github.com/gereons/gemini) - the true one, not that AI crap.
 
 ![Example FlyDials dialog, as seen in Gemini.](flydials.png "FlyDials example")
 
