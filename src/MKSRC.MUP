@@ -1,0 +1,4 @@
+rm -f $TMPDIR\flysrc.zoo $TMPDIR\flyh.zoo $TMPDIR\fd.zoo
+zoo ah: $TMPDIR\flysrc `ls -I '*.o' -I '*.pdb'`
+zoo ah: $TMPDIR\flyh 'd:\pure-c\include\flydial\*.h'
+zoo af: $TMPDIR\fd $TMPDIR\flysrc.zoo $TMPDIR\flyh.zoo

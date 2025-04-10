@@ -1,0 +1,474 @@
+@(#)Flydial/flydial.gen
+@(#)Julian F. Reschke, 9. August 1992
+
+
+Versionen der Fliegenden Dialoge
+--------------------------------
+
+Vers  Datum     Bemerkung
+
+0.12  05.07.89  Behobene Bugs:
+                - "Verschwinden" von Dialogen bei zu schneller
+                  Bewegung.
+                - "Infinitive Redraw" bei HIDETREE eines letzten
+                  Objekts im Baum.
+                - Buttons mit falscher Schriftgrîûe
+0.13  11.07.89  Generell Bezeichnungen auf FLYDIAL geÑndert. Objc-
+                Draw sollte jetzt wieder laufen; wird aber demnÑchst
+                von Grund auf neu gemacht.
+0.14  11.07.89  ObjcDraw fÅr Buttons nun vîllig zu Fuû. SHADOW und
+                Ñhnlicher Unfug zur Zeit nicht supported.
+0.15  14.07.89  Solange an ObjcDraw gebastelt, bis es wieder mit
+                MvMerge richtig funktioniert hat...
+0.16  26.07.89  Workstation-Handling in ObjcDraw wird wieder Åberar-
+                beitet. Bitte am Anfang des Programms DialInit() und
+                am Ende DialExit() aufrufen!!!
+0.17  18.08.89  Fehler in ObjcDraw beseitigt, der Dialoge mit Tiefe
+                >2 zum HÑngen brachte. Neuer Extended-Type '21', der
+                bei DrÅcken der HELP-Taste selektiert wird.
+      22.08.89  DialInit() darf jetzt auch mehrfach aufgerufen werden.
+                DialExit() darf auch aufgerufen werden, ohne daû ein
+                DialInit() da war.
+                Objc- und Form-Routinen betrachten jetzt '[[' als
+                Schreibweise fÅr '['.
+      11.09.89  Beim Verschieben der Dialoge wird jetzt im MFDB das
+                gerÑtespezifische Format gewÑhlt (sorry, Arnd).
+                DialStart() liefert einen Success-Code zurÅck, mit
+                dem man feststellen kann, ob der Hintergrund
+                tatsÑchlich gebuffert worden ist.
+                Man kann jetzt auch mit TOS 1.0 Edit-Felder mit
+                Validation-Zeichen '9' verwenden, ohne daû bei
+                Eingabe von '_' das System abstÅrzt.
+0.18  23.09.89  Bei DialAlert wird jetzt automatisch die Mausform
+                gesetzt, aber NICHT zurÅckgesetzt (wie auch...)
+      25.09.89  Die Popp-Routinen kennen jetzt auch geCHECKTE
+                Objekte
+      28.09.89  Die Popp-Routinen erkennen jetzt auch Objekte mit
+                gesetztem ext-ob-type richtig.
+0.20  28.09.89  Interne Umstellungen in handle.o (siehe auch
+                flydial.h)
+      15.10.89  Doppelte '[' werden jetzt in Buttons herausgefiltert.
+      14.11.89  Radio-Buttons gehen jetzt auch bei G_IMAGE richtig
+                (énderung in ObjcChange)
+      16.11.89  DialAlert alloziert seine Buffer jetzt dynamisch!
+      18.11.89  Die Alerts Åberleben jetzt auch mehr als 15 Zeilen,
+                alle Ausgaben Åber DialWk erfolgen geclippt auf
+                die Bildschirmgrîûe.
+0.21  22.11.89  Alerts erscheinen nur noch, wenn sie in das
+                Work-Area von Window 0 passen. DialMove fÅr Leute
+                ohne Blitter etwas verschînert.
+      24.11.89  Bitmaps fÅr DialAlert kînnen jetzt dazugelinkt
+                werden (siehe im Header-File)
+0.22  29.11.89  Die Bitmaps sind jetzt Åber Funktionen erreichbar.
+                Neue Routinen fÅr wind_update und graf_mouse einge-
+                baut. Sollten jetzt von jedem Programm benutzt werden,
+                da damit z.B. DialAlert den Mauszeiger 
+                wiederherstellt.
+      05.12.89  PoppUps kînnen jetzt auch durch Anklicken des Parents
+                hervorgeholt werden.
+      15.12.89  Alt-0 geht jetzt auch als Shortcut. Alt-Ziffernblock
+                geht noch immer nicht und wird auch nie gehen, da
+                die Tasten mit und ohne Alt den gleichen Scancode
+                zurÅckliefern.
+      19.12.89  Auf TOS 1.0 kann man jetzt in numerischen Feldern auch
+                mehr als die Zifferntasten drÅcken.
+      14.01.90  Handling bei Popups geÑndert.                    
+                Experimentell: auûerhalb eines Dialogs rechte UND linke
+                Taste drÅcken: Maus wird Åber Mover positioniert.
+      16.01.90  ...: wieder entfernt: DafÅr drin: PoppSet2ThinLine
+                macht aus einer disableten gestrichelten Linie
+                etwas HÅbscheres. 
+                Ausprobieren!
+0.23  19.01.90  PoppSet2ThinLine in das Modul Menu verschoben (heiût
+                jetzt MenuSet2ThinLine). Neu: MenuTune.
+      23.01.90  FormDo und damit auch DialDo skalieren jetzt versuchsweise
+                Radio-Buttons und Check-Boxes auf ihre tatsÑchlichen
+                Ausmaûe.
+      28.01.90  DialAlert macht seinen WindUpdate jetzt 'eher'.
+      11.02.90  DialDo merkt sich jetzt eine mittels FormSetFormKeybd
+                gesetzte Routine. DafÅr neue Funktion: FormGetFormKeybd.
+0.24  23.02.90  Kleine Optimierung an RectInter
+      25.02.90  Radio Buttons jetzt rund. Bitte testen.
+      09.03.90  Bei DialStart wird der Root-Tree auf OUTLINE gepatcht,
+                wenn er das Attribut SHADOWED hat (wg. ABC-GEM).
+                Die Fliegenden Dialoge geben jetzt grundsÑtzlich
+                geclippt aus. Dazu war es nîtig, die neue Funktion
+                ObjcTreeInit() einzufÅhren, die jeweils EINMAL pro
+                Tree aufgerufen werden muû.
+      28.03.90  Mit RastDotRect und RastSetDotStyle kann man jetzt
+                schwarze Linien auf grauem Hintergrund hinbekommen.
+0.25  06.04.90  MenuTune paût jetzt die MenÅleiste an die tatsÑchliche
+                Bildschirmbreite an. Das AES tut's nicht, daher die
+                merkwÅrdigen Effekte mit einigen RCS's und Overscan
+                (malen in den Rand hinein).
+      13.04.90  In Poppup-MenÅs dÅrfen jetzt auch USERDEF-Objekte
+                auftauchen, die Behandlung ist allerdings bislang
+                noch relativ rudimentÑr und nur mit den ThinLines
+                der MenÅs getestet.
+      15.04.90  UNDERLINE geht demnÑchst nur noch mit STRINGS!
+      23.04.90  énderung vom 6.4. wieder rÅckgÑngig gemacht. 
+                Stattdessen sollte man dafÅr sorgen, daû im RSC-File
+                die Breite des MenÅtitelhintergrunds auf 80 (Zeichen)
+                steht. rsrc_obfix() sorgt dann selbst fÅr die
+                Anpassung.
+                Alle Objekte werden jetzt als USERDEFs gemalt. Dazu
+                muû allerdings ObjcTreeInit selbst dynamisch etwas
+                Speicher anfordern, was bei DA's zu Problemen fÅhren
+                kînnte (im Moment wird genug fÅr 100 Userdefs 
+                angefordert -- wenn das nicht reicht, wird ein neuer
+                Malloc gemacht). Durch die Umstellung ist DialDraw
+                deutlich schneller und das Modul Objc deutlich
+                kleiner geworden.
+                ObjcGetObspec liefert jetzt den Obspec eines Objekts
+                (wenn es sich bei dem Objekt um ein in ein Userdef
+                gewandeltes Objekt handelt, wird der Obspec aus
+                ub_parm im USERBLK ermittelt).
+
+0.27  02.06.90  Touchexit-Objekte, die SELECTABLE sind, werden jetzt
+                beim Anklicken noch invertiert (Thanx an Elmar)
+      12.06.90  Versuchsweise neu drin: clip, jazz und fonts.
+                Bei Checkboxes und Radiobuttons werden jetzt nicht
+                mehr nur die Texte disabled dargestellt.
+      30.06.90  Neuer Objekttyp: 22. Auswirkung:
+                Falls NICHT BOXCHAR: Breite des Objekts wird um 1
+                vermindert
+                Sonst: Anstelle des Zeichens wird ein Cycle-Pfeil
+                gemalt.
+      13.08.90  Kleinen Fehler in JazzUp bei der Entprellung entfernt.
+                Popp wird nicht weiter unterstÅtzt.
+0.28  13.08.90  Arnd's defines fÅr MSDOS Åbertragen.
+      28.08.90  Bei JazzUp und SlidClick Updates eingebaut bzw.
+                umgestellt.
+                Die Listen machen jetzt automatisch realtime-scrolling,
+                wenn sie `kurz genug' sind.
+      15.09.90  Ein biûchen in form_ und objc_ aufgerÑumt, selektier-
+                bare Radio-Textfelder tun's jetzt richtig, warum
+                auch immer.
+                Bei DialCenter wird jetzt eine von BigScreen 2.0
+                gesetzte Struktur berÅcksichtigt, Dialogboxen
+                werden auf dem sichtbaren Teil des Bildschirms
+                zentriert.
+                DialCenter snappt nicht mehr auf Byte-Positionen
+      20.09.90  SlidClick beachtet jetzt bei der Entscheidung
+                fÅr Realtimescrolling den accel-Wert
+                Bei schmalen Alerts sollte jetzt die Bitmap nicht
+                mehr in die Icons hineinragen.
+      24.09.90  Beim Testen von Zeichenbreiten wird jetzt ASCII-
+                Zeichen 0 ausgelassen. Mindestens EIN Bug in
+                DialAlert, der zu AbstÅrzen fÅhren konnte, ist
+                gekillt.
+       4.10.90  Mit öberarbeitung von objc_edit angefangen. FormKeyBd-
+                Binding hat sich geÑndert, also Vorsicht (->make all).
+                Erstes Resultat: Clr und Home haben in Dialogboxen
+                jetzt eine Funktion. BackTab (Shift-TAB) geht jetzt
+                auch.
+       6.10.90  DialInit bekommt jetzt Pointer fÅr malloc() und free().
+                Siehe énderung im Prototype (->make all...).
+                formdo kann jetzt shift-cursor (Anfang/Ende der 
+                Zeile), ctrl-cursor (Wort vor/zurÅck)
+       8.10.90  CR wird zu TAB, wenn kein Default-Objekt da ist.
+                Mit FormSetValidate kann man nun experimentell
+                eigene ObjcEdit-Validierungen einbauen (siehe
+                Beispiel)
+                cltr-delete lîscht bis zum Ende des feldes.
+                Was schon immer da war: shift-insert drÅcken,
+                ascii-code eingeben, nochmal shift-insert drÅcken,
+                zeichen erscheint.
+      17.11.90  In der DialCenter-Geschichte (siehe 15.9.) war leider
+                noch ein Bug (die Position wurde ignoriert). Die
+                Font-Routinen benutzen jetzt vqt_width und sollten
+                daher beim prop-Test schneller sein.
+      16.12.90  In Dialogboxen werden ListMan-Slider jetzt beim
+                Anklicken selektiert.
+      16.02.91  ListMan hat jetzt eine experimentale Scroll-Bremse,
+                an den Font-Sachen gab es ein ppar énderungen
+                wg. FSM-GDOS. Das Feld `startfld' bei DialDo ist
+                jetzt ein Int-POINTER, der am Ende das zuletzt
+                aktuelle Edit-Feld enthÑlt. Daher: MAKE ALL. NULL
+                bzw. 0 darf dennoch weiter benutzt werden, DialDo
+                nimmt dann eine eigene Variable.
+                Sinn des Ganzen: nach Verschieben von Dialogen oder
+                auch nach Anklicken eines Touchexit-Objekts bleibt
+                der Cursor jetzt da, wo er war.
+      18.02.91  Die ListMan-Routinen ListHScroll, ListVScroll,
+                ListUpdate.. und ListInvert.. kommen jetzt
+                ebenfalls mit Verschiebungen der Dialogbox zurecht.
+                Falls noch was fehlt: bitte melden.
+      23.02.91  Auf vielfachen Wunsch sind jetzt Checkboxes um einen
+      			Pixel weniger hoch. Das erlaubt es, sie zur Not auch
+      			direkt Åbereinander zu packen.
+0.31  30.03.91  Mit der GEM/3-Version synchronisiert.
+      31.03.91  Die JazzUps kînnen jetzt Keyboard-Selektion mit
+                Cursortasten, OK und UNDO. Strings dÅrfen jetzt
+                auch den ext ob type 18 haben und kînnen dann 
+                Åber die Tastatur selektiert werden (-> fÅr die
+                Beschriftungen vor den Popups).
+                
+Donnerstag,  4. April 1991, 20.18 Uhr
+Bei Tastaturbedienung von JazzSelect steht jetzt der Default auf dem
+'gecheckten' Feld.
+
+Mittwoch, 10. April 1991, 17.56 Uhr
+Sehr haesslichen Bug in ObjcTreeInit (bzw. in dessen Internals) gefunden.
+Einmal fuer USERDEF-Strukturen allozierter Speicher wurde nie wieder
+freigegeben. Hoffentlich ist die neue Routine etwas intelligenter...
+(warum ist das erst jetzt bemerkt worden???)
+
+Mittwoch, 31. Juli 1991, 18.53 Uhr, Version 0.32
+Haesslichen Bug gekillt, der bei Shift-Clr-Home zu Busfehlern fuehren
+konnte.
+Direkteingabe von ASCII-Codes via Shift-Insert vorlaeufig ausgebaut.
+
+Donnerstag,  1. August 1991, 23.18 Uhr
+Scroll-Delay bei horizontalen Slidern sollte jetzt auch gehen.
+
+Donnerstag,  1. August 1991, 23.50 Uhr
+Die Scroll-Geschwindgkeit ist jetzt davon abhaengig, wie weit man die Maus
+ueber den Rand der Liste hinausbewegt.
+
+Sonntag, 13. Oktober 1991, 18.24 Uhr
+In ListMan-Listen bleibt jetzt bei selectionservice == 1 immer ein Eintrag
+selektiert, laesst sich also nicht mehr mit shift-Click wegklicken.
+Bei Klick mit beiden Maustasten auf's Eselsohr wird der Dialog durchsichtig.
+
+Mittwoch, 16. Oktober 1991, 07.42 Uhr
+Strings mit Shortcut koennen jetzt auch mit Attribut `DISABLED' ausgegeben
+werden.
+
+Montag, 21. Oktober 1991, 19.17 Uhr, Version 0.33
+Release.
+
+Freitag,  7. Februar 1992, 15.11 Uhr, Version 0.34
+Fehler bei den Cycle-Buttons behoben (cut&paste-Fehler fÅhrte dazu, daû
+es knallte, wenn der Systemfont nicht 8x8 oder 8x16 Pixel groû war).
+
+Donnerstag, 20. Februar 1992, 23.22 Uhr, Version 0.35
+GANZ hÑûlichen Fehler in getcookie() beseitigt (mÅûte seit Mitte Januar
+drin gewesen sein), der auf Rechnern ohne Cookie-Jar zum Absturz fÅhrte.
+
+Donnerstag, 19. MÑrz 1992, 15.46 Uhr, Version 0.36
+An mehreren Stellen wurde bei vrt_cpyfm ein falscher Writing-Mode
+Åbergeben (was auf der Matrix-TC-Karte zu érger fÅhrte).
+
+Donnerstag, 19. MÑrz 1992, 19.14 Uhr
+Den Blitterabfragekram bei der Bestimmung der VDI-Geschwindigkeit
+ersatzlos gestrichen.
+
+Mittwoch, 25. MÑrz 1992, 19.05 Uhr, Version 0.37
+Noch eine énderung wg. Direct-Color: vro_cpyfm wird nicht mehr zum Malen
+von Rechtecken miûbraucht.
+
+Samstag,  4. April 1992, 12.11 Uhr
+Der Cycle-Pfeil kann jetzt auch invertiert dargestellt werden.
+
+Samstag,  4. April 1992, 15.30 Uhr
+Neue Frontends fÅr JazzSelect angefangen.
+
+Samstag,  4. April 1992, 16.15 Uhr
+..und fertiggestellt. ZusÑtzlich: neue Frontends fÅr DialAlert.
+
+Donnerstag,  9. April 1992, 00.09 Uhr
+ErklÑrungen fÅr JazzId und JazzCycle in den Includefile aufgenommen.
+
+Sonntag, 12. April 1992, 15.55 Uhr
+In DialMove war ein Aufruf von vs_clip mit dem AES-Handle.
+
+Freitag, 17. April 1992, 13.12 Uhr
+Korrektur beim Cycle-Pfeil: es wird beim Weitercyclen nicht mehr die
+Mausposition ÅberprÅft (war inkonsistent, vgl. Verhalten der Pfeile in
+XControl).
+
+Samstag, 18. April 1992, 16.21 Uhr
+In JazzUps darf jetzt ein zusÑtzliches Hintergrundobjekt zur Begrenzung
+des Shadows liegen. Mit Support fuer UpDown-Selektoren begonnen.
+
+Dienstag, 12. Mai 1992, 01.19 Uhr, Version 0.38
+Mehr oder weniger smarte Routine eingebaut, die dafÅr sorgen *soll*, daû
+auch tatsÑchlich die vom AES benutzte Fontgrîûe eingestellt wird.
+
+Sonntag, 17. Mai 1992, 13.58 Uhr
+Neue Funktion WindCenter() (analog zu DialCenter()).
+
+Freitag, 22. Mai 1992, 10.46 Uhr
+Hinweis zu 12.5.: die Routine tut's noch nicht, wenn es keine per
+vst_point einstellbare Grîûe ist.
+
+Samstag, 23. Mai 1992, 16.53 Uhr
+In HandFast() wurde bei vq_extnd nur ein 56 EintrÑge groûes Array
+angelegt (gab zu Recht Probleme mit den Behne-VDI-Libs).
+
+Mittwoch, 10. Juni 1992, 09.34 Uhr MSZ
+Bei Fehlerabbruch (wg. DialStart) haben die JazzUp-Funktionen den
+BEG_MCTRL nicht rÅckgÑngig gemacht.
+
+Samstag, 18. Juli 1992, 20.10 Uhr MSZ
+Der von den FlyDials benutzte Font wird jetzt mittels vst_height
+gesetzt, HandSFSize enthaelt also nur noch den 'closest match'. Die
+'richtige' fÅr vst_height geeignete Grîûe steht in HandSFHeight.
+
+Sonntag, 19. Juli 1992, 10.20 Uhr MSZ
+An zwei Stellen #ifdefs fuer die Behnelibs eingebaut. vst_arbpt und
+vqt_devinfo aus dem Project entfernt (sind mittlerweile in PCGEMLIB).
+
+Sonntag, 19. Juli 1992, 22.58 Uhr MSZ
+In GrundzÅgen mit einer Libraryerweiterung fÅr Dialoge in Fenstern
+begonnen. Mal sehen, was am Ende herauskommt.
+
+Donnerstag, 30. Juli 1992, 23.47 Uhr MSZ
+Mit der Reduzierung der Super()-Aufrufe begonnen.
+
+Samstag,  1. August 1992, 14.49 Uhr MSZ
+Alle Aufrufe von Super() entfernt.
+
+Sonntag,  9. August 1992, 10.54 Uhr MSZ
+fonts.c: der FSM-test geht jetzt Åber vqt_name.
+
+Mittwoch, 26. August 1992, 17.54 Uhr MSZ
+Ein wenig an der Fontinitialisierung gearbeitet, ist aber noch immer nicht
+ganz korrekt.
+
+Freitag, 28. August 1992, 17.44 Uhr MSZ
+Es wird jetzt die Richstein-Methode (objc_draw eines Strings auf geclipptem
+Bereich) benutzt. Scheint zu laufen.
+
+Freitag, 25. September 1992, 09.53 Uhr MSZ
+Fontabfrage noch mit WindUpdate geklammert.
+
+Samstag,  2. Januar 1993, 13.27 Uhr MEZ
+Neulich: animierte Bitblks haben jetzt eine optionale Callback-Funktion,
+also Make All!
+Auûerdem: nach Mîglichkeit wird jetzt appl_getinfo zur Fontgrîûenabfrage
+benutzt.
+
+Dienstag,  2. MÑrz 1993, 23.29 Uhr MEZ
+Interne Bastelarbeiten fÅr 3d-Kram.
+fonts.c: die Fontliste ist jetzt automatisch alphabetisch.
+
+Freitag,  3. September 1993, 11.10 Uhr MSZ
+Neulich: fonts.c: Umstellung auf Routinen, die die Fonts nach Schrift und
+Schnitt unterscheiden
+objc: ObjcRemoveTree so weit korrigiert, daû es zumindest mit scrnwond.acc
+richtig lÑuft.
+
+Samstag,  4. September 1993, 13.23 Uhr MSZ
+objc.c: Strings mit Shortcuts kînnen selektiert dargestellt werden.
+
+Samstag,  4. September 1993, 13.39 Uhr MSZ
+jazz.c: Neues Interface fÅr JazzSelect und JazzId, siehe Headerfile oder
+Beispiele in SCSI-Tool.
+
+Samstag,  4. September 1993, 14.16 Uhr MSZ
+graf.c: Neu: GrafMouseIsOver().
+
+Donnerstag, 30. September 1993, 20.55 Uhr MEZ
+alrt.c: Neu: bei Alerts dÅrfen leere Buttons als Trenner eingefÅgt
+werden (der erzeugte Abstand entspricht der Anzahl der Blanks im
+Button). Anwendungsbeispiel: "[Abbruch|   |[Lesen|[Schreiben"
+
+Freitag,  1. Oktober 1993, 13.04 Uhr MEZ
+form.c: In FormDo wird jetzt beim Ausgang durch Exit-Objekte eine
+Pause von 1/10 Sekunde eingelegt (Selektion -> User-Feedback) [nur
+bei Ausgang per Tastatur].
+
+Freitag,  1. Oktober 1993, 21.30 Uhr MEZ
+jazz.c: mÅûte jetzt auch mit nicht-selektierbaren Objekten zurechtkommen.
+
+Samstag,  2. Oktober 1993, 15.21 Uhr MEZ
+neu: DialXDo, neu parametrisiert: FormXDo (liefern erheblich mehr
+Information). USERDEFs kînnen jetzt editierbar sein; siehe dazu neuer
+extended Objekt-Typ 25 (editable_frame in objc.c): Åber einen
+Escape der USERDEF-Routine wird ein Pointer auf eine eigene 
+Edit-Routine erfragt (liefert diese 0 zurÅck, wird FormXDo verlassen).
+
+Samstag,  2. Oktober 1993, 19.24 Uhr MEZ
+fonts.c: Fehler beim Aufbau der Fontliste beseitigt. Sollte die Probleme
+in Gemini lîsen.
+
+Dienstag,  5. Oktober 1993, 16.35 Uhr MEZ
+jazz.c: Kleine Schînheitskorrekturen an der Tastaturnavigation.
+
+Dienstag, 12. Oktober 1993, 11.27 Uhr MEZ
+fonts.c: Bug beseitigt (Klassifizierung isfsm).
+
+Dienstag, 26. Oktober 1993, 14.10 Uhr MEZ
+objc.c: ObjcRemoveTree erweitert.
+
+Samstag, 30. Oktober 1993, 17.33 Uhr MEZ
+form.c: In FormXDO C&P-Fehler beseitigt (falsche Pointerabfrage).
+
+Samstag, 30. Oktober 1993, 17.52 Uhr MEZ
+form.c: Absturzbug beseitigt.
+
+Freitag,  4. MÑrz 1994, 23.07 Uhr MEZ
+alrt.c: strtok wird nicht mehr benutzt.
+
+Freitag, 11. MÑrz 1994, 12.08 Uhr MEZ
+alrt.c: Der String '-36' wird nicht mehr hinter '-' getrennt.
+
+Donnerstag, 14. Juli 1994, 19.55 Uhr MSZ, Version 0.41
+jazz.c: Alignment wird jetzt (empirisch) richtig gesetzt (Farbpopups in
+Gemini), Navigation mit allen vier Cursortasten
+
+Dienstag, 26. Juli 1994, 09.33 Uhr MSZ, Version 0.42
+listman.c: ListMoveSelection geht nicht mehr ins Endlose.
+form.c: beim Suchen nach dem nÑchsten Edit-Objekt gerÑt die Suchschleife
+nicht mehr in den nÑchsten Dialog, wenn das aktuelle Editobjekt bereits
+das letzte Objekt war.
+
+Dienstag,  2. August 1994, 10.46 Uhr MSZ
+clip.c: benutzt kleine Dateinamen.
+
+Sonntag, 28. August 1994, 15.02 Uhr MSZ, Version 0.45
+Die Buttontexte fÅr OK und Weiter (DialSay etc) sind jetzt extern
+konfigurierbar.
+
+Dienstag, 30. August 1994, 20.31 Uhr MSZ
+ObjcTreeInit: [Abbruch und [OK werden automagisch Åbersetzt.
+
+Samstag, 29. Oktober 1994, 16.25 Uhr MEZ
+Fonts: der Prop-Check nutzt jetzt NVDI 3/ Speedo 5.
+
+Dienstag,  3. Januar 1995, 23.15 Uhr MEZ
+fontsel.c: Hintergrund wird auch in TC richtig gesetzt.
+
+Donnerstag, 12. Januar 1995, 20.51 Uhr MEZ
+objc.c: Bitmaps fÅr 7x14-Font (BAGB09.FNT).
+slid.c: Slider wird selektiert.
+objc.c: Edit-Rahmen genauso dick wie beim Mac.
+*.c: Der Edit-Fokus kann jetzt auf Mac-like umgeschaltet werden (Belegung von Cursor
+rauf/runter). Dazu $FLYDIAL_PREFS auf "edit_focus=only_tab" setzen.
+form.c: Contrl-Tab macht nun auch BackTab.
+
+Sonntag, 19. MÑrz 1995, 18.16 Uhr MEZ
+appl_xgetinfo: neues Binding
+
+Sonntag, 30. April 1995, 14.04 Uhr MSZ
+Ext Obj Type 24: 3D-Rahmen.
+
+Sonntag, 30. April 1995, 14.58 Uhr MSZ
+Die 3D-Darstellung kann mittels use_3d=yes/no in den FLYDIAL_PREFS
+umgeschaltet werden (Trennzeichen :).
+
+Samstag, 27. Mai 1995, 13.24 Uhr MSZ
+bei edit_focus==only_tab und extern int _invert_edit != 0 wird das aktuelle
+Edit-Objekt selektiert.
+
+Samstag, 27. Mai 1995, 20.41 Uhr MSZ
+clip.c: Åberarbeitet, neue Funktion ClipChanged().
+
+Samstag, 27. Mai 1995, 21.38 Uhr MSZ
+form.c: ^C und ^V gehen ins Clipboard.
+
+Montag, 29. Mai 1995, 18.09 Uhr MSZ
+form.c, Mac-Editfelder: die Selektion verschwindet beim ersten eingegebenen
+Zeichen.
+
+Samstag, 16. September 1995, 15.58 Uhr MSZ, julian@Kim, Release 0.52
+Fehlerabfrage nach appl_getinfo (wg Winx).
+
+Dienstag, 10. Oktober 1995, 17.27 Uhr MEZ, julian@Kim
+menu.c: Nicelines werden geclippt gemalt (Geneva Teardown).
+
+Dienstag, 14. Oktober 1997, 11.40 Uhr MSZ, julian@Kim
+objc.c: UnderString: Unterstreichung benutzt die wirkliche Textbreite
+(prop. Systemfont in MagiC).

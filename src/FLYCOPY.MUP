@@ -1,0 +1,3 @@
+mkdir a:\flydial
+cp -v \purec\lib\flydial.lib \purec\include\flydial\*.h \purec\flydial\flydial.gen a:\flydial
+
