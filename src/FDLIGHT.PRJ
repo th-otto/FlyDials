@@ -1,7 +1,0 @@
-..\lib\fdlight.lib
-.L[ -J]
-.C[ -P]
-=              ; list of modules follows...
-applxget.c
-fdlight.c
-

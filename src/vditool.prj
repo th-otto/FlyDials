@@ -1,0 +1,19 @@
+..\lib\vditool.o
+.L[ -J]
+.C[-I..]
+.C[ -P -G]
+.C[-A-]
+=              ; list of modules follows...
+vvclsvwk.c
+vvclswk.c
+vvclrwk.c
+vvcpyfmo.c
+vventerc.c
+vvexitc.c
+vvhidec.c
+vvopnvwk.c
+vvopnwk.c
+vvpline.c
+vvsclip.c
+vvshowc.c
+vvupdwk.c
